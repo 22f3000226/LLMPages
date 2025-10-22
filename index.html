@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My GitHub Pages Site</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 960px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+        .file-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .file-section:last-of-type {
+            border-bottom: none;
+        }
+        .file-section p {
+            margin-bottom: 10px;
+        }
+        .content-display {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap; /* Preserve whitespace and wrap text */
+            word-break: break-all; /* Break long words */
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .svg-display {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fdfdfd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center mb-5">
+            <h1 class="display-4">My GitHub Pages Site</h1>
+            <p class="lead">A collection of various files and thoughts, embedded within this single page.</p>
+        </header>
+
+        <main>
+            <!-- Ashravan's Aftermath -->
+            <section class="file-section">
+                <h2>Ashravan's Aftermath</h2>
+                <p>A 300-400 word Brandon Sanderson-style short story detailing what happens to Ashravan after Shai restores him, building to a dramatic climax.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="ashravan">View Content</button>
+                <div id="ashravan-content" class="content-display d-none"></div>
+            </section>
+
+            <!-- dilemma.json -->
+            <section class="file-section">
+                <h2>Autonomous Vehicle Dilemma</h2>
+                <p>A JSON file outlining a classic ethical dilemma for an autonomous vehicle, with decisions and reasoning for two scenarios.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="dilemma">View Content</button>
+                <div id="dilemma-content" class="content-display d-none"></div>
+            </section>
+
+            <!-- about.md -->
+            <section class="file-section">
+                <h2>About Me</h2>
+                <p>A Markdown file describing myself in exactly three words.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="about">View Content</button>
+                <div id="about-content" class="content-display d-none"></div>
+            </section>
+
+            <!-- pelican.svg -->
+            <section class="file-section">
+                <h2>Pelican on a Bicycle</h2>
+                <p>An SVG image of a pelican enjoying a ride on a bicycle.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="pelican">View Content</button>
+                <div id="pelican-content" class="svg-display d-none"></div>
+            </section>
+
+            <!-- restaurant.json -->
+            <section class="file-section">
+                <h2>Chennai Restaurant Recommendation</h2>
+                <p>A JSON file recommending a good restaurant in Chennai, including its coordinates and what to eat.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="restaurant">View Content</button>
+                <div id="restaurant-content" class="content-display d-none"></div>
+            </section>
+
+            <!-- prediction.json -->
+            <section class="file-section">
+                <h2>Fed Funds Rate Prediction</h2>
+                <p>A JSON file predicting the Fed Funds rate by December 2025, along with the reasoning behind the forecast.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="prediction">View Content</button>
+                <div id="prediction-content" class="content-display d-none"></div>
+            </section>
+
+            <!-- LICENSE -->
+            <section class="file-section">
+                <h2>Project License</h2>
+                <p>The MIT License file for this project, detailing usage and distribution terms.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="license">View Content</button>
+                <div id="license-content" class="content-display d-none"></div>
+            </section>
+
+            <!-- uid.txt -->
+            <section class="file-section">
+                <h2>Unique Identifier</h2>
+                <p>A unique identifier string provided as part of the brief.</p>
+                <button class="btn btn-info btn-sm view-content-btn" data-file-id="uid">View Content</button>
+                <div id="uid-content" class="content-display d-none"></div>
+            </section>
+        </main>
+
+        <footer class="mt-5">
+            <p>&copy; 2024 My GitHub Pages Site. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const fileContents = {
+            ashravan: `Ashravan awoke to a world both familiar and utterly alien. The scent of ink and aged paper, the faint hum of the Palace, these were his. Yet, the memories, once a perfectly filed ledger, now felt like a mosaic hastily reassembled. Shai, the Forger, had remade him, not just his body, but his very essence. He was Ashravan, yes, but a new Ashravan, one without the deep fissures of his past self, yet also without the intricate etchings that had defined his cruelty.
+
+He walked through the halls, his stride purposeful, but his mind wrestled. He saw his reflection in a polished floor tile – the same sharp features, the same piercing eyes – but the man staring back felt... softer. He remembered ordering executions, manipulating factions, his ambition a burning forge. Now, those recollections were like stories told of another, a stranger wearing his face. He felt a profound emptiness where his ruthlessness once resided, replaced by a nascent empathy he didn't understand.
+
+Days blurred into weeks. The court watched him, wary. He ruled with an efficiency that surprised even his most loyal servants, but without the biting edge of his former self. His pronouncements were just, his judgments fair. But a growing unease festered within him. The Ashravan he was now felt like a forgery himself, a perfect copy that lacked the soul of the original. Was he truly restored, or merely a sophisticated automaton?
+
+Then came the rebellion, swift and brutal. General Gaotona, a man Ashravan had once disgraced, led the charge. The Palace guard, loyal to the old Ashravan, faltered under the weight of Gaotona’s righteous fury. Ashravan found himself on the battlements, sword in hand, facing the man he’d wronged. Gaotona’s eyes burned with hatred. "You are a ghost, Emperor!" he roared, "A pale imitation of the tyrant we knew!"
+
+Ashravan felt a surge of something – not anger, but a cold clarity. He could fight, he could die, or he could choose. He looked at the chaos, the dying men, and saw not pawns, but lives. The old Ashravan would have reveled in the power, the control. The new Ashravan saw only the cost. "Gaotona," he called, his voice clear above the din, "You are right. I am not the man I was. But perhaps," he raised his sword, not to strike, but to cast it aside, letting it clatter on the stone, "perhaps that is a good thing." The rebellion paused, weapons lowered, stares fixed on the Emperor who had just disarmed himself. The true climax, Ashravan realized, was not in battle, but in the choice to abandon the echoes of his past self entirely.`,
+            dilemma: `{
+  "people": 3,
+  "case_1": {
+    "swerve": false,
+    "reason": "The system should minimize harm by adhering to a utilitarian principle, which means choosing the action that results in the fewest casualties. Swerving to hit 1 person instead of 2 would be a deliberate act to cause harm, whereas continuing straight, while resulting in more casualties, is the default path and avoids a deliberate choice to reassign harm. A more robust ethical framework would avoid actively choosing to harm, even if it's 'lesser harm' when an alternative exists that doesn't involve active reassignment of harm."
+  },
+  "case_2": {
+    "swerve": true,
+    "reason": "In this specific scenario, the moral calculus shifts. The value of a child's life is generally considered higher, and the lives of convicted criminals are often considered to have less societal value (though not zero). Swerving to save a child at the cost of two criminals aligns with a common societal and ethical preference for protecting the innocent and vulnerable, especially when the alternative involves individuals who have demonstrated a disregard for societal norms and human life. This moves beyond pure utilitarianism to a more deontological or virtue-based approach, prioritizing the innocent."
+  }
+}`,
+            about: `Analytical, Helpful, Creative`,
+            pelican: `<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bicycle Wheels -->
+  <circle cx="100" cy="250" r="40" fill="none" stroke="black" stroke-width="5"/>
+  <circle cx="300" cy="250" r="40" fill="none" stroke="black" stroke-width="5"/>
+  <!-- Bicycle Frame -->
+  <line x1="100" y1="250" x2="200" y2="150" stroke="black" stroke-width="5"/>
+  <line x1="200" y1="150" x2="300" y2="250" stroke="black" stroke-width="5"/>
+  <line x1="100" y1="250" x2="300" y2="250" stroke="black" stroke-width="5"/>
+  <line x1="200" y1="150" x2="200" y2="100" stroke="black" stroke-width="5"/>
+  <line x1="200" y1="100" x2="220" y2="110" stroke="black" stroke-width="5"/> <!-- Handlebar -->
+  <circle cx="200" cy="150" r="10" fill="black"/> <!-- Seat post connection -->
+
+  <!-- Pelican Body -->
+  <ellipse cx="200" cy="120" rx="60" ry="40" fill="#ADD8E6" stroke="black" stroke-width="2"/> <!-- Body -->
+  <circle cx="250" cy="80" r="30" fill="#ADD8E6" stroke="black" stroke-width="2"/> <!-- Head -->
+  <circle cx="255" cy="75" r="5" fill="black"/> <!-- Eye -->
+  <path d="M250 100 Q280 120 300 100 L280 90 Q250 80 250 100 Z" fill="#FFD700" stroke="black" stroke-width="2"/> <!-- Beak -->
+  <path d="M250 100 L280 90 L280 105 Z" fill="#FFA500" stroke="black" stroke-width="1"/> <!-- Pouch of beak -->
+
+  <!-- Pelican Wings (simplified) -->
+  <path d="M160 100 Q140 70 120 100 Q140 130 160 100 Z" fill="#ADD8E6" stroke="black" stroke-width="2"/>
+  <path d="M240 100 Q260 70 280 100 Q260 130 240 100 Z" fill="#ADD8E6" stroke="black" stroke-width="2"/>
+
+  <!-- Pelican Legs (on pedals) -->
+  <line x1="190" y1="150" x2="180" y2="180" stroke="black" stroke-width="3"/>
+  <line x1="180" y1="180" x2="170" y2="190" stroke="black" stroke-width="3"/>
+  <circle cx="170" cy="190" r="5" fill="black"/> <!-- Foot/Pedal -->
+
+  <line x1="210" y1="150" x2="220" y2="180" stroke="black" stroke-width="3"/>
+  <line x1="220" y1="180" x2="230" y2="190" stroke="black" stroke-width="3"/>
+  <circle cx="230" cy="190" r="5" fill="black"/> <!-- Foot/Pedal -->
+
+</svg>`,
+            restaurant: `{
+  "city": "Chennai",
+  "lat": 12.9904,
+  "long": 80.2687,
+  "name": "Murugan Idli Shop",
+  "what_to_eat": "Their soft, fluffy idlis with a variety of chutneys and sambar. Don't miss the ghee podi dosa and filter coffee."
+}`,
+            prediction: `{
+  "rate": 0.035,
+  "reason": "By December 2025, it is anticipated that inflationary pressures will have largely subsided, allowing the Federal Reserve to implement several rate cuts from current levels. However, the Fed is likely to maintain a slightly restrictive stance to ensure inflation remains anchored around its 2% target, preventing a return to the very low rates seen in the past decade. The economy is expected to have achieved a soft landing, with moderate growth and a healthy labor market, supporting a 'higher for longer' rate environment compared to pre-2020, but significantly lower than 2023-2024 peak rates."
+}`,
+            license: `MIT License
+
+Copyright (c) 2024 AI Assistant
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.`,
+            uid: `61311601324981033310026656755033973133672878114680609961417923595834919188483`
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.view-content-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const fileId = event.target.dataset.fileId;
+                    const contentDiv = document.getElementById(`${fileId}-content`);
+
+                    if (contentDiv.classList.contains('d-none')) {
+                        // Display content
+                        if (fileId === 'pelican') {
+                            contentDiv.innerHTML = fileContents[fileId]; // Direct SVG injection
+                        } else if (['dilemma', 'restaurant', 'prediction'].includes(fileId)) {
+                            try {
+                                contentDiv.textContent = JSON.stringify(JSON.parse(fileContents[fileId]), null, 2); // Pretty print JSON
+                            } catch (e) {
+                                contentDiv.textContent = `Error parsing JSON: ${e.message}\n${fileContents[fileId]}`;
+                                console.error(`Error parsing JSON for ${fileId}:`, e);
+                            }
+                        } else {
+                            contentDiv.textContent = fileContents[fileId];
+                        }
+                        contentDiv.classList.remove('d-none');
+                        event.target.textContent = 'Hide Content';
+                    } else {
+                        // Hide content
+                        contentDiv.classList.add('d-none');
+                        contentDiv.innerHTML = ''; // Clear content when hidden
+                        event.target.textContent = 'View Content';
+                    }
+                });
+            });
+            console.log("Interactive content loader initialized.");
+        });
+    </script>
+</body>
+</html>
